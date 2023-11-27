@@ -9,4 +9,4 @@ from django.shortcuts import render
 # Nullam elementum urna nisi, pellentesque iaculis enim cursus in. Praesent volutpat
 # porttitor magna, non finibus neque cursus id.
 def home(request):
-    return render(request, "home.html")
+    return render(request, "home/home.html")
