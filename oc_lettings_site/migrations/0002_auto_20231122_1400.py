@@ -4,55 +4,54 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('oc_lettings_site', '0001_initial'),
+        ("oc_lettings_site", "0001_initial"),
     ]
 
     operations = [
         migrations.SeparateDatabaseAndState(
             state_operations=[
-        migrations.RemoveField(
-            model_name='letting',
-            name='address',
-        ),
+                migrations.RemoveField(
+                    model_name="letting",
+                    name="address",
+                ),
             ],
             # Reusing the table. So don't drop it.
             database_operations=[],
         ),
         migrations.SeparateDatabaseAndState(
             state_operations=[
-        migrations.RemoveField(
-            model_name='profile',
-            name='user',
-        ),
+                migrations.RemoveField(
+                    model_name="profile",
+                    name="user",
+                ),
             ],
             # Reusing the table. So don't drop it.
             database_operations=[],
         ),
         migrations.SeparateDatabaseAndState(
             state_operations=[
-        migrations.DeleteModel(
-            name='Address',
-        ),
+                migrations.DeleteModel(
+                    name="Address",
+                ),
             ],
             # Reusing the table. So don't drop it.
             database_operations=[],
         ),
         migrations.SeparateDatabaseAndState(
             state_operations=[
-        migrations.DeleteModel(
-            name='Letting',
-        ),
+                migrations.DeleteModel(
+                    name="Letting",
+                ),
             ],
             # Reusing the table. So don't drop it.
             database_operations=[],
         ),
         migrations.SeparateDatabaseAndState(
             state_operations=[
-        migrations.DeleteModel(
-            name='Profile',
-        ),
+                migrations.DeleteModel(
+                    name="Profile",
+                ),
             ],
             # Reusing the table. So don't drop it.
             database_operations=[],
