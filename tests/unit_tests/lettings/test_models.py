@@ -6,7 +6,7 @@ import pytest
 
 class TestLettingsModels:
     def setup_method(self):
-        """Create an Address instance"""
+        """Create an Address instance and a Letting instance"""
         self.address = Address.objects.create(
             number=secrets.randbelow(200),
             street=secrets.token_hex(20),

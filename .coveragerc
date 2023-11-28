@@ -1,0 +1,2 @@
+[run]
+omit = tests/*, manage.py, oc_lettings_site/wsgi.py, oc_lettings_site/asgi.py
