@@ -10,7 +10,7 @@ from lettings.models import Address, Letting
 class TestLettingsViews:
     def setup_method(self):
         self.client = Client()
-        """Create an Address and a Letting"""
+        """Create an Address instance"""
         self.address = Address.objects.create(
             number=secrets.randbelow(200),
             street=secrets.token_hex(20),
