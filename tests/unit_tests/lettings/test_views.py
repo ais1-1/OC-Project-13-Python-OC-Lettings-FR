@@ -40,6 +40,16 @@ class TestLettingsViews:
         assertTemplateUsed(response, "lettings/index.html")
 
     @pytest.mark.django_db
+    def test_index_without_letting(self):
+        response = self.client.get(reverse("lettings:index"))
+        content = response.content.decode()
+        expected_content = "<p>No lettings are available.</p>"
+
+        assert expected_content in content
+        assert response.status_code == 200
+        assertTemplateUsed(response, "lettings/index.html")
+
+    @pytest.mark.django_db
     def test_letting(self):
         letting = Letting.objects.create(
             title=secrets.token_hex(30), address=self.address
@@ -66,17 +76,7 @@ class TestLettingsViews:
         )
 
         """
-        The first assert tests if the get request returns 500 status code
+        The first assert tests if the get request returns 404 status code
         """
         assert response.status_code == 404
         assertTemplateUsed(response, "404.html")
-
-    @pytest.mark.django_db
-    def test_index_without_letting(self):
-        response = self.client.get(reverse("lettings:index"))
-        content = response.content.decode()
-        expected_content = "<p>No lettings are available.</p>"
-
-        assert expected_content in content
-        assert response.status_code == 200
-        assertTemplateUsed(response, "lettings/index.html")

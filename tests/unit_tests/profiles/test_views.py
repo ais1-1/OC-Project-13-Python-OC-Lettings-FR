@@ -51,3 +51,27 @@ class TestProfilesViews:
         assert expected_content in content
         assert response.status_code == 200
         assertTemplateUsed(response, "profiles/profile.html")
+
+    @pytest.mark.django_db
+    def test_profile_with_unknown_user(self):
+        response = self.client.get(
+            reverse("profiles:profile", kwargs={"username": "tada"})
+        )
+
+        """
+        The first assert tests if the get request returns 404 status code
+        """
+        assert response.status_code == 404
+        assertTemplateUsed(response, "404.html")
+
+    @pytest.mark.django_db
+    def test_index_without_profile(self):
+        """Delete the created profile"""
+        self.profile.delete()
+        response = self.client.get(reverse("profiles:index"))
+        content = response.content.decode()
+        expected_content = "<p>No profiles are available.</p>"
+
+        assert expected_content in content
+        assert response.status_code == 200
+        assertTemplateUsed(response, "profiles/index.html")
