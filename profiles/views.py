@@ -1,3 +1,4 @@
+import logging
 from django.shortcuts import render, get_object_or_404
 
 from .models import Profile
@@ -14,6 +15,10 @@ def profile(request, username):
     """Detailed view of a profile.
     Parameters:
     username (str): username of a profile"""
-    profile = get_object_or_404(Profile, user__username=username)
-    context = {"profile": profile}
-    return render(request, "profiles/profile.html", context)
+    try:
+        profile = get_object_or_404(Profile, user__username=username)
+        context = {"profile": profile}
+        return render(request, "profiles/profile.html", context)
+    except Exception as e:
+        logging.error(str(e))
+        return render(request, "error.html", {"message": str(e)}, status=500)
