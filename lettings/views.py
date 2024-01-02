@@ -24,4 +24,4 @@ def letting(request, letting_id):
         return render(request, "lettings/letting.html", context)
     except Exception as e:
         logging.error(str(e))
-        return render(request, "error.html", {"message": str(e)}, status=500)
+        return render(request, "error.html", {"message": str(e)}, status=404)

@@ -21,4 +21,4 @@ def profile(request, username):
         return render(request, "profiles/profile.html", context)
     except Exception as e:
         logging.error(str(e))
-        return render(request, "error.html", {"message": str(e)}, status=500)
+        return render(request, "error.html", {"message": str(e)}, status=404)

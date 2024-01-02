@@ -79,4 +79,4 @@ class TestLettingsViews:
         The first assert tests if the get request returns 404 status code
         """
         assert response.status_code == 404
-        assertTemplateUsed(response, "404.html")
+        assertTemplateUsed(response, "error.html")
