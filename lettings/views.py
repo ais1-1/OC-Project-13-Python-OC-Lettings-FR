@@ -1,9 +1,11 @@
 import logging
 from django.shortcuts import render, get_object_or_404
+from django.views.decorators.http import require_safe
 
 from .models import Letting
 
 
+@require_safe
 def index(request):
     """Index of lettings, which lists lettings in the database."""
     lettings_list = Letting.objects.all()
@@ -11,6 +13,7 @@ def index(request):
     return render(request, "lettings/index.html", context)
 
 
+@require_safe
 def letting(request, letting_id):
     """Detailed view of a letting.
     Parameters:

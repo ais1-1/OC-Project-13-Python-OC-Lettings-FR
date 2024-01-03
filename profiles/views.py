@@ -1,9 +1,12 @@
 import logging
 from django.shortcuts import render, get_object_or_404
+from django.views.decorators.http import require_safe
+
 
 from .models import Profile
 
 
+@require_safe
 def index(request):
     """Index of profiles, which lists the profiles in the database."""
     profiles_list = Profile.objects.all()
@@ -11,6 +14,7 @@ def index(request):
     return render(request, "profiles/index.html", context)
 
 
+@require_safe
 def profile(request, username):
     """Detailed view of a profile.
     Parameters:

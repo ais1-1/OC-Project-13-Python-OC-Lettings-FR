@@ -1,12 +1,15 @@
 import logging
 from django.shortcuts import render
+from django.views.decorators.http import require_safe
 
 
+@require_safe
 def home(request):
     """Renders home page"""
     return render(request, "home/home.html")
 
 
+@require_safe
 def trigger_error(request):
     try:
         division_by_zero = 1 / 0
