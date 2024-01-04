@@ -5,7 +5,7 @@ from django.views.decorators.http import require_safe
 
 @require_safe
 def home(request):
-    """Renders home pagebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"""
+    """Renders home page"""
     return render(request, "home/home.html")
 
 
