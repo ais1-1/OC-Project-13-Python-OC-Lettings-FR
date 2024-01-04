@@ -1,0 +1,35 @@
+version: 2.1
+
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/python:3.10.11
+    steps:
+      - checkout
+      - restore_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+      - run:
+          name: Initialize venv / Install deps
+          command: |
+            python -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
+      - save_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+          paths:
+            - ".venv"
+      - run:
+          name: Run tests
+          command: |
+            . venv/bin/activate
+            pytest
+      - run:
+          name: Linting
+          command: |
+            . venv/bin/activate
+            flake8
+
+workflows:
+  main:
+    jobs:
+      - build-and-test
