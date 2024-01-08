@@ -4,6 +4,7 @@ jobs:
   build-and-test:
     docker:
       - image: cimg/python:3.10.11
+    resource_class: small
     steps:
       - checkout # fetches your source code over SSH to the configured path
       - restore_cache: # restores a previously saved cache
@@ -30,8 +31,37 @@ jobs:
           command: |
             . venv/bin/activate
             flake8
+  
+  containerize:
+    docker:
+      - image: cimg/python:3.10.11
+    resource_class: medium
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Containerize
+          command: |
+            echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USER --password-stdin
+            VERSION=$CIRCLE_SHA1
+            TAG="$DOCKER_REPO$VERSION"
+            LATEST="${DOCKER_REPO}:latest"
+            BUILD_TIMESTAMP=$( date '+%F_%H:%M:%S' )
+            docker build -t "$TAG" -t "$LATEST" --build-arg VERSION="$VERSION" --build-arg BUILD_TIMESTAMP="$BUILD_TIMESTAMP" .
+            docker push "$TAG" 
+            docker push "$LATEST"
 
 workflows:
   main:
     jobs:
       - build-and-test
+      - containerize:
+          auth:
+            username: $DOCKER_USER
+            password: $DOCKER_PASSWORD
+          requires:
+            - build-and-test
+          filters:
+            branches:
+              only:
+                - master
