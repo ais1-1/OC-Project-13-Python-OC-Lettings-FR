@@ -42,11 +42,11 @@ jobs:
       - run:
           name: Containerize
           command: |
-            echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USER --password-stdin
             VERSION=$CIRCLE_SHA1
             TAG="$DOCKER_REPO$VERSION"
             LATEST="${DOCKER_REPO}:latest"
             BUILD_TIMESTAMP=$( date '+%F_%H:%M:%S' )
+            docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
             docker build -t "$TAG" -t "$LATEST" --build-arg VERSION="$VERSION" --build-arg BUILD_TIMESTAMP="$BUILD_TIMESTAMP" .
             docker push "$TAG" 
             docker push "$LATEST"
