@@ -23,7 +23,7 @@ jobs:
           name: Run coverage tests
           command: |
             . venv/bin/activate
-            pytest --cov=.
+            pytest --log-disable --cov=.
             coverage report --fail-under=80
 
       - run:
