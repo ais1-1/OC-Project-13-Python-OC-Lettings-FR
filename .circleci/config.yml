@@ -56,9 +56,6 @@ workflows:
     jobs:
       - build-and-test
       - containerize:
-          auth:
-            username: $DOCKER_USER
-            password: $DOCKER_PASSWORD
           requires:
             - build-and-test
           filters:
