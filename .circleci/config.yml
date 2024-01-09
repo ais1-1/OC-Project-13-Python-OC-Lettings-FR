@@ -50,6 +50,16 @@ jobs:
             docker build -t "$TAG" -t "$LATEST" --build-arg VERSION="$VERSION" --build-arg BUILD_TIMESTAMP="$BUILD_TIMESTAMP" .
             docker push "$TAG" 
             docker push "$LATEST"
+  
+  deploy:
+    docker:
+      - image: $LATEST
+    steps:
+      - checkout
+      - run:
+          name: Deploy Master to Heroku
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
 
 workflows:
   main:
@@ -58,6 +68,14 @@ workflows:
       - containerize:
           requires:
             - build-and-test
+          filters:
+            branches:
+              only:
+                - master
+      - deploy:
+          requires:
+            - build-and-test
+            - containerize
           filters:
             branches:
               only:
