@@ -13,6 +13,7 @@ RUN pip install --upgrade pip
 RUN adduser -D myuser
 USER myuser
 WORKDIR /home/myuser
+ENV PATH "$PATH:/home/myuser/.local/bin"
 
 # Configure Django environment variables
 ENV SECRET_KEY $SECRET_KEY

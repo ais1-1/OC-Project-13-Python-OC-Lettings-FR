@@ -1,1 +1,1 @@
-web: gunicorn oc_lettings_site.wsgi
+worker: gunicorn oc_lettings_site.wsgi
