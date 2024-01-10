@@ -26,8 +26,5 @@ COPY --chown=myuser:myuser requirements.txt requirements.txt
 RUN pip install --user --no-cache-dir -r requirements.txt
 COPY --chown=myuser:myuser . .
 
-# Exposing a port
-EXPOSE 8000
-
-# Run Django server after collecting static files
-CMD python3 manage.py collectstatic --noinput && python3 manage.py runserver 0.0.0.0:8000
+# Run Django server with the port opened by heroku after collecting static files
+CMD python3 manage.py collectstatic --noinput && python3 manage.py runserver 0.0.0.0:$PORT
