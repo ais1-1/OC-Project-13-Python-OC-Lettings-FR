@@ -1,7 +1,8 @@
-import sys, os
+import sys
+import os
 
 # Add the root directory to the python path
-sys.path.insert(0, os.path.abspath('../..'))
+sys.path.insert(0, os.path.abspath("../.."))
 
 # Configuration file for the Sphinx documentation builder.
 #
@@ -20,21 +21,21 @@ release = "1.0"
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    'sphinx.ext.duration',
-    'sphinx.ext.autodoc',
-    'sphinx.ext.intersphinx',
+    "sphinx.ext.duration",
+    "sphinx.ext.autodoc",
+    "sphinx.ext.intersphinx",
 ]
 
 intersphinx_mapping = {
-    'python': ('https://docs.python.org/3/', None),
-    'sphinx': ('https://www.sphinx-doc.org/en/master/', None),
+    "python": ("https://docs.python.org/3/", None),
+    "sphinx": ("https://www.sphinx-doc.org/en/master/", None),
 }
-intersphinx_disabled_domains = ['std']
+intersphinx_disabled_domains = ["std"]
 
 templates_path = ["_templates"]
 exclude_patterns = []
 
-language =  'fr'
+language = "fr"
 
 
 # -- Options for HTML output -------------------------------------------------
