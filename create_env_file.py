@@ -1,6 +1,6 @@
 """
-Créer un fichier .env avec une clé secrète générée aléatoirement et 
-des variables d'environnement préconfigurées. Voir le fichier 
+Créer un fichier .env avec une clé secrète générée aléatoirement et
+des variables d'environnement préconfigurées. Voir le fichier
 .env.dist pour l'exemple.
 
 Les noms de variables d'environnement préconfigurés sont :
@@ -37,15 +37,15 @@ from django.core.management.utils import get_random_secret_key
 
 # Liste des noms de variables d'environnement
 env_variable_names = [
-    'SECRET_KEY',
-    'DEBUG',
-    'ALLOWED_HOSTS',
-    'PORT',
-    'SENTRY_DSN',
-    'DOCKER_USER',
-    'DOCKER_PASSWORD',
-    'DOCKER_REPO',
-    'HEROKU_APP_NAME',
+    "SECRET_KEY",
+    "DEBUG",
+    "ALLOWED_HOSTS",
+    "PORT",
+    "SENTRY_DSN",
+    "DOCKER_USER",
+    "DOCKER_PASSWORD",
+    "DOCKER_REPO",
+    "HEROKU_APP_NAME",
 ]
 
 # Générer la clé secrète aléatoire
@@ -65,7 +65,7 @@ try:
         for env_var in env_variable_names[4:]:
             f.write(f"{env_var}=\n")
 except IOError as e:
-  print(f"Couldn't write to file ({e})")
+    print(f"Couldn't write to file ({e})")
 else:
     # Afficher un message indiquant que le modèle de fichier .env a été créé
     print(f".env file has created successfully!")
