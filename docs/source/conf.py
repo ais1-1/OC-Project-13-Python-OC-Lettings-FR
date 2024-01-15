@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "oc-lettings"
+project = "OC-Project-13-Python-OC-Lettings-FR"
 copyright = "2024, Aiswarya Kaitheri Kandoth"
 author = "Aiswarya Kaitheri Kandoth"
 release = "1.0"
