@@ -1,28 +1,19 @@
 .. oc-lettings documentation master file, created by
    sphinx-quickstart on Wed Jan 10 16:33:35 2024.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
 
-Welcome to oc-lettings's documentation!
-=======================================
+Bienvenue dans la documentation d'Orange County Lettings site web 2.0 !
+=======================================================================
+.. image:: _static/Orange_County_Lettings_banner.png
+  :width: 600
+  :alt: Bannière d'OC Lettings
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
-
-Description
---------
-
-- Be awesome
-- Make things faster
-
-Installation
-------------
-
-Install $project by running:
-
-    install project
-
+   :caption: Sommaire:
+   
+   Description du projet <project_description>
+   Installation <installation>
+   Guide de démarrage rapide <quick_start>
 
 Indices and tables
 ==================
