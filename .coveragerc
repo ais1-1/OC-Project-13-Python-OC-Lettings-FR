@@ -1,2 +1,7 @@
 [run]
-omit = tests/*, manage.py, oc_lettings_site/wsgi.py, oc_lettings_site/asgi.py
+omit = tests/*, manage.py, oc_lettings_site/wsgi.py, oc_lettings_site/asgi.py, create_env_file.py
+
+[report]
+exclude_also =
+    def trigger_error
+    

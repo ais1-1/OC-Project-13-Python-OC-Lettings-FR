@@ -3,8 +3,11 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to oc-lettings's documentation!
+Bienvenue dans la documentation d'Orange County Lettings website !
 =======================================
+.. image:: _static/Orange_County_Lettings_banner.png
+  :width: 400
+  :alt: oc-lettings banner
 
 .. toctree::
    :maxdepth: 2
