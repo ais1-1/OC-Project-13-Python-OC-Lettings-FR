@@ -1,3 +1,8 @@
+import sys, os
+
+# Add the root directory to the python path
+sys.path.insert(0, os.path.abspath('../..'))
+
 # Configuration file for the Sphinx documentation builder.
 #
 # For the full list of built-in configuration values, see the documentation:
@@ -16,9 +21,7 @@ release = "1.0"
 
 extensions = [
     'sphinx.ext.duration',
-    'sphinx.ext.doctest',
     'sphinx.ext.autodoc',
-    'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
 ]
 
@@ -31,9 +34,12 @@ intersphinx_disabled_domains = ['std']
 templates_path = ["_templates"]
 exclude_patterns = []
 
+language =  'fr'
+
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = "alabaster"
+# Theme documentation at https://sphinx-themes.org/sample-sites/sphinx-rtd-theme/
+html_theme = "sphinx_rtd_theme"
 html_static_path = ["_static"]
