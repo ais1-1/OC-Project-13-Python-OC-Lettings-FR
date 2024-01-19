@@ -1,6 +1,11 @@
 #!/bin/bash
+#
+# Pull a docker image from DockerHub and run it in your machine.
+#
+# Prerequisite : .env file of the repository.
+# It can recieve docker image name as an argument. If not provided it will use the DOCKER_REPO environment variable from your .env file.
 
-docker_image_name=${1:-a15h/orange-county-lettings-oc-13:latest}
+docker_image_name=${1:-$(grep "DOCKER_REPO" .env | cut -d "=" -f2-):latest}
 
 docker_username=$(grep "DOCKER_USER" .env | cut -d "=" -f2-)
 docker_password=$(grep "DOCKER_PASSWORD" .env | cut -d "=" -f2-)
