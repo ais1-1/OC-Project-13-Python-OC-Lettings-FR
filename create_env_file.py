@@ -1,9 +1,9 @@
 """
-Créer un fichier .env avec une clé secrète générée aléatoirement et
-des variables d'environnement préconfigurées. Voir le fichier
-.env.dist pour l'exemple.
+Create an .env file with a randomly generated secret key and
+preconfigured environment variables. View file
+.env.dist for the example.
 
-Les noms de variables d'environnement préconfigurés sont :
+The preconfigured environment variable names are:
 
     - SECRET_KEY
     - DEBUG
@@ -15,21 +15,20 @@ Les noms de variables d'environnement préconfigurés sont :
     - HEROKU_APP_NAME
     - PORT
 
-Le fichier .env généré doit être configuré avec des valeurs appropriées
-pour chaque variable d'environnement avant utilisation.
+The generated .env file must be configured with appropriate values
+for each environment variable before use.
 
-Exemple d'utilisation :
+Example of use :
 
-    1. Exécutez ce script pour générer un fichier .env.
-    2. Configurez les valeurs des variables d'environnement
-       dans le fichier .env généré.
-    3. Utilisez le fichier .env pour configurer
-       l'environnement de votre application oc_lettings_site.
+    1. Run this script to generate an .env file.
+    2. Configure environment variable values
+       in the generated .env file.
+    3. Use the .env file to configure
+       the environment of your oc_lettings_site application.
 
 .. note::
-    Remarque :
-    Le fichier .env généré ne doit pas être partagé publiquement
-    car il contient des informations sensibles.
+    The generated .env file should not be shared publicly
+    because it contains sensitive information.
 
 """
 
