@@ -13,7 +13,10 @@ Dans le reste de la documentation, il est supposé que la commande ``python`` de
 Cloner le dépôt
 ---------------
 Dans votre terminal :
-    `git clone https://github.com/ais1-1/OC-Project-13-Python-OC-Lettings-FR.git`
+
+.. code-block:: bash
+
+    git clone https://github.com/ais1-1/OC-Project-13-Python-OC-Lettings-FR.git
 
 
 

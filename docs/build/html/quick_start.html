@@ -22,6 +22,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Technologies et langages" href="technologies_and_languages.html" />
     <link rel="prev" title="Installation" href="installation.html" /> 
 </head>
 
@@ -52,8 +53,14 @@
 <li class="toctree-l2"><a class="reference internal" href="#creer-et-activer-l-environnement-virtuel">Créer et activer l’environnement virtuel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installer-les-packages-necessaires">Installer les packages nécessaires</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configurer-les-variables-d-environnement-fichier-env">Configurer les variables d’environnement : fichier <cite>.env</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#executer-lapplication">Exécuter l’Application</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="technologies_and_languages.html">Technologies et langages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Base de données</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_descriptions.html">Description des API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide.html">Guide d’utilisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_procedure_and_management.html">Procédures de déploiement et gestion de l'application</a></li>
 </ul>
 
         </div>
@@ -125,8 +132,8 @@
 </div>
 </section>
 <section id="configurer-les-variables-d-environnement-fichier-env">
-<h2>Configurer les variables d’environnement : fichier <cite>.env</cite><a class="headerlink" href="#configurer-les-variables-d-environnement-fichier-env" title="Link to this heading"></a></h2>
-<p>Les variables d’environnements sont utilisées pour le stockage les valeurs sensibles. Ils doivent stocker dans le fichier <cite>.env</cite>. Pour l’execution de l’application au moin les variables suivantes doivent configuer :</p>
+<span id="create-venv"></span><h2>Configurer les variables d’environnement : fichier <cite>.env</cite><a class="headerlink" href="#configurer-les-variables-d-environnement-fichier-env" title="Link to this heading"></a></h2>
+<p>Les variables d’environnements sont utilisées pour le stockage les valeurs sensibles. Ils doivent stocker dans le fichier <cite>.env</cite>. Pour l’execution de l’application en local au moin les variables suivantes doivent configuer :</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SECRET_KEY</span>
 <span class="n">DEBUG</span>
 <span class="n">ALLOWED_HOSTS</span>
@@ -145,7 +152,26 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>create_env_file.py
 </pre></div>
 </div>
+</div></blockquote>
+</li>
+</ol>
 <p><strong>Une fois le fichier `.env` créé, ouvrez-le avec un éditeur de texte et ajoutez les bonnes valeurs pour chaque variable.</strong></p>
+</section>
+<section id="executer-lapplication">
+<h2>Exécuter l’Application<a class="headerlink" href="#executer-lapplication" title="Link to this heading"></a></h2>
+<p>Utilisez ces étapes pour exécuter l’application après avoir activer l’environnement virtuel (voir <a class="reference internal" href="#creer-et-activer-l-environnement-virtuel">Créer et activer l’environnement virtuel</a>) :</p>
+<ol class="arabic">
+<li><p>Lancez le serveur :</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>path/to/the/folder/OC-Project-13-Python-OC-Lettings-FR
+python<span class="w"> </span>manage.py<span class="w"> </span>runserver
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Accédez à l’application dans le navigateur de votre choix :</p>
+<blockquote>
+<div><p>Aller à l’adresse <a class="reference external" href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a> dans le navigateur.</p>
 </div></blockquote>
 </li>
 </ol>
@@ -157,6 +183,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
         <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="technologies_and_languages.html" class="btn btn-neutral float-right" title="Technologies et langages" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

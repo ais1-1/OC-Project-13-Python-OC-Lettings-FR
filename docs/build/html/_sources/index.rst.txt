@@ -14,6 +14,13 @@ Bienvenue dans la documentation d'Orange County Lettings site web 2.0 !
    Description du projet <project_description>
    Installation <installation>
    Guide de démarrage rapide <quick_start>
+   Technologies et langages <technologies_and_languages>
+   Base de données <database>
+   Description des API <api_descriptions>
+   Guide d’utilisation <user_guide>
+   Procédures de déploiement et gestion de l'application <deployment_procedure_and_management>
+
+
 
 Indices and tables
 ==================

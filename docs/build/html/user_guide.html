@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guide d’utilisation &mdash; Documentation oc-lettings 1.0</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=7a28dfa3"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/translations.js?v=d99ca74e"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Procédures de déploiement et gestion de l’application" href="deployment_procedure_and_management.html" />
+    <link rel="prev" title="Description des API" href="api_descriptions.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            oc-lettings
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Sommaire:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="project_description.html">Description du projet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Guide de démarrage rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technologies_and_languages.html">Technologies et langages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Base de données</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_descriptions.html">Description des API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Guide d’utilisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#linting">Linting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tests-unitaires">Tests unitaires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#couverture-de-test">Couverture de test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#utilisation-de-sentry">Utilisation de Sentry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#utilisation-de-docker">Utilisation de Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#utilisation-de-circleci">Utilisation de CircleCI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#utilisation-de-heroku">Utilisation de Heroku</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_procedure_and_management.html">Procédures de déploiement et gestion de l'application</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">oc-lettings</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Guide d’utilisation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/user_guide.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="guide-dutilisation">
+<h1>Guide d’utilisation<a class="headerlink" href="#guide-dutilisation" title="Link to this heading"></a></h1>
+<section id="linting">
+<h2>Linting<a class="headerlink" href="#linting" title="Link to this heading"></a></h2>
+<p>Le projet utilise le module flake8 pour linting. Flake8 a été configuré pour permettre une longueur maximale de ligne de code jusqu’à 99 caractères. Et il ne lintera pas dans les dossiers de migrations et d’environnement virtuel. Ces comportements sont obtenus grâce à des lignes suivantes du fichier <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> :</p>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="k">[flake8]</span>
+<span class="na">max-line-length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">99</span>
+<span class="na">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">**/migrations/*,venv, env</span>
+</pre></div>
+</div>
+<p>Exécutez le linting à l’aide des commandes suivantes :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Déplacer à la racine du dossier</span>
+<span class="nb">cd</span><span class="w"> </span>path/to/the/folder/OC-Project-13-Python-OC-Lettings-FR
+<span class="c1"># Activer l&#39;environnement virtuel</span>
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+<span class="c1"># Faire le linting</span>
+flake8
+</pre></div>
+</div>
+</section>
+<section id="tests-unitaires">
+<h2>Tests unitaires<a class="headerlink" href="#tests-unitaires" title="Link to this heading"></a></h2>
+<p>Le projet utilise le module pytest pour les tests. Les tests correspondant à chaque application (home, lettings et profiles) sont regroupés dans des dossiers de mêmes noms sous le dossier <code class="docutils literal notranslate"><span class="pre">tests/unit_tests</span></code>. Les tests unitaires sont écrits avec des classes.</p>
+<p>La configuration pytest peut être vue dans le fichier <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> sous la ligne <code class="docutils literal notranslate"><span class="pre">[tool:pytest]</span></code>.</p>
+<p>Lancez des tests à l’aide des commandes suivantes :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Déplacer à la racine du dossier</span>
+<span class="nb">cd</span><span class="w"> </span>path/to/the/folder/OC-Project-13-Python-OC-Lettings-FR
+<span class="c1"># Activer l&#39;environnement virtuel</span>
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+<span class="c1"># Lancer le test</span>
+pytest
+</pre></div>
+</div>
+</section>
+<section id="couverture-de-test">
+<h2>Couverture de test<a class="headerlink" href="#couverture-de-test" title="Link to this heading"></a></h2>
+<p>Le projet utilise Coverage.py et pytest-cov (plugin Coverage.py pour pytest) pour une meilleur lecture du couverture.</p>
+<p>La configuration de la couverture, comme les fichiers à exclure, se trouve dans le fichier <code class="docutils literal notranslate"><span class="pre">.coveragerc</span></code>.</p>
+<p>Pour voir le rapport de couverture sur le terminal :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Déplacer à la racine du dossier</span>
+<span class="nb">cd</span><span class="w"> </span>path/to/the/folder/OC-Project-13-Python-OC-Lettings-FR
+coverage<span class="w"> </span>report<span class="w"> </span>-m
+</pre></div>
+</div>
+<p>Pour voir le rapport avec une rapport de test :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Déplacer à la racine du dossier</span>
+<span class="nb">cd</span><span class="w"> </span>path/to/the/folder/OC-Project-13-Python-OC-Lettings-FR
+pytest<span class="w"> </span>--cov<span class="o">=</span>.
+</pre></div>
+</div>
+</section>
+<section id="utilisation-de-sentry">
+<h2>Utilisation de Sentry<a class="headerlink" href="#utilisation-de-sentry" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Configuration</p></li>
+</ul>
+<p>Pour utiliser Sentry et pouvoir utiliser le monitoring sur le projet accédé à votre compte ( si vous n’en avez pas encore une, <a class="reference external" href="https://sentry.io/signup/">créer un compte Sentry</a>).</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Créer un nouveau projet</p></li>
+<li><p>Choisissez une plateforme pour le projet, dans notre cas Django.</p></li>
+<li><p>Choisissez une équipe pour votre projet ensuite cliquer sur : Créer un projet</p></li>
+<li><p>Une fois le projet créé, vous pourrez récupérer la clé <code class="docutils literal notranslate"><span class="pre">SENTRY_DSN</span></code> dans <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Client</span> <span class="pre">Keys</span> <span class="pre">(DSN)</span></code> à intégrer dans le fichier <code class="docutils literal notranslate"><span class="pre">.env</span></code></p></li>
+</ul>
+</div></blockquote>
+<p>Une fois toutes ces étapes exécutées et le serveur local lancer, vous pourrez visualiser sur Sentry l’activité de l’application.</p>
+<p>La journalisation Sentry peut être testée en naviguant vers <code class="docutils literal notranslate"><span class="pre">/sentry-debug/</span></code>, localement et sur l’application déployée via <code class="docutils literal notranslate"><span class="pre">https://&lt;HEROKU_APP_NAME&gt;-&lt;IDENTIFIER&gt;.herokuapp.com/sentry-debug/</span></code>. Ce point de terminaison provoque une <code class="docutils literal notranslate"><span class="pre">ZeroDivisionError</span></code>. Voici un exemple :</p>
+<a class="reference internal image-reference" href="_images/sentry_zero_division_error.png"><img alt="ZeroDivisionError in Sentry" src="_images/sentry_zero_division_error.png" style="width: 600px;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Pour collaborer sur un projet, vous devez créer des équipes et accorder des autorisations dans la configuration Sentry. Consultez <a class="reference external" href="https://docs.sentry.io/product/accounts/membership/">la documentation officielle de Sentry</a> pour plus de détails.</p>
+</div>
+<ul class="simple">
+<li><p>Logging</p></li>
+</ul>
+<p>Pour compléter la gestion des erreurs en insérant des logs appropriés dans le code, ce projet utilise le module de logging de Python. Le logging Python est prise en charge par Sentry avec le module <code class="docutils literal notranslate"><span class="pre">sentry-sdk</span></code> installé. Ces logs doivent être placés aux endroits stratégiques du code, tels que les fonctions critiques, les blocs try/except et les points de validation des données.</p>
+<p>Voici un extrait de code depuis le projet (<code class="docutils literal notranslate"><span class="pre">lettings/views.py</span></code>). Notez la partie <code class="docutils literal notranslate"><span class="pre">except</span></code> pour l’exemple de l’utilisation de <code class="docutils literal notranslate"><span class="pre">logging</span></code> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">letting</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">letting_id</span><span class="p">):</span>
+<span class="sd">&quot;&quot;&quot;Detailed view of a letting.</span>
+<span class="sd">Parameters:</span>
+<span class="sd">letting_id (int): id of a letting&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">letting</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Letting</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">letting_id</span><span class="p">)</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">letting</span><span class="o">.</span><span class="n">title</span><span class="p">,</span>
+            <span class="s2">&quot;address&quot;</span><span class="p">:</span> <span class="n">letting</span><span class="o">.</span><span class="n">address</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;lettings/letting.html&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;error.html&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)},</span> <span class="n">status</span><span class="o">=</span><span class="mi">404</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Voyez lire <a class="reference external" href="https://docs.sentry.io/platforms/python/integrations/logging/">la documentation officielle</a> pour plus d’exemple.</p>
+</section>
+<section id="utilisation-de-docker">
+<h2>Utilisation de Docker<a class="headerlink" href="#utilisation-de-docker" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Construire et taguer une image du site</p></li>
+</ul>
+<ol class="arabic">
+<li><p><a class="reference external" href="https://docs.docker.com/get-docker/">Téléchargez et installez Docker</a></p></li>
+<li><p>Accédez au répertoire du projet :</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>path/to/the/folder/OC-Project-13-Python-OC-Lettings-FR
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Assurez-vous que le fichier <code class="docutils literal notranslate"><span class="pre">.env</span></code> a été préalablement créé (voir <a class="reference internal" href="quick_start.html#create-venv"><span class="std std-ref">Configurer les variables d’environnement : fichier .env</span></a>)</p></li>
+<li><p>Construisez l’image  avec le nom de l’image souhaitée :</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>&lt;image-name&gt;<span class="w"> </span>.
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<ul>
+<li><p>Pousser l’image vers le DockerHub</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>Créer un compte sur DockerHub (<a class="reference external" href="https://hub.docker.com/signup">la page de connexion</a>).</p></li>
+<li><p>Connectez-vous avec la commande suivante :</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>login<span class="w"> </span>--username<span class="w"> </span>&lt;username&gt;<span class="w"> </span>--password-stdin
+</pre></div>
+</div>
+<p>Vous pouvez taper le mot de passe ensuite dans le terminal.</p>
+</div></blockquote>
+</li>
+<li><p>Pousser l’image :</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>push<span class="w"> </span>&lt;image-name&gt;
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p>Lancer le site localement avec un image Docker</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>Vous pouvez lancer l’image que vous avez construit dans un centenaire docker avec la commande suivante :</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>&lt;container_name&gt;<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>-it<span class="w"> </span>-d<span class="w"> </span>&lt;image_name&gt;
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="utilisation-de-circleci">
+<h2>Utilisation de CircleCI<a class="headerlink" href="#utilisation-de-circleci" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Configuration</p></li>
+</ul>
+</section>
+<section id="utilisation-de-heroku">
+<h2>Utilisation de Heroku<a class="headerlink" href="#utilisation-de-heroku" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Configuration</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="api_descriptions.html" class="btn btn-neutral float-left" title="Description des API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="deployment_procedure_and_management.html" class="btn btn-neutral float-right" title="Procédures de déploiement et gestion de l’application" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2024, Aiswarya Kaitheri Kandoth.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

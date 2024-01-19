@@ -42,11 +42,12 @@ Une fois l'environnement virtuel activé exécuter la commande suivante pour ins
 
     pip install -r requirements.txt
 
+.. _create-venv:
 
 Configurer les variables d'environnement : fichier `.env`
 ---------------------------------------------------------
 
-Les variables d'environnements sont utilisées pour le stockage les valeurs sensibles. Ils doivent stocker dans le fichier `.env`. Pour l'execution de l'application au moin les variables suivantes doivent configuer :
+Les variables d'environnements sont utilisées pour le stockage les valeurs sensibles. Ils doivent stocker dans le fichier `.env`. Pour l'execution de l'application en local au moin les variables suivantes doivent configuer :
 
 .. code-block:: python
     
@@ -68,4 +69,20 @@ Il y a deux options pour la création du fichier `.env` :
 
         python create_env_file.py
 
-    **Une fois le fichier `.env` créé, ouvrez-le avec un éditeur de texte et ajoutez les bonnes valeurs pour chaque variable.**
+**Une fois le fichier `.env` créé, ouvrez-le avec un éditeur de texte et ajoutez les bonnes valeurs pour chaque variable.**
+
+Exécuter l’Application
+----------------------
+
+Utilisez ces étapes pour exécuter l’application après avoir activer l'environnement virtuel (voir `Créer et activer l'environnement virtuel`_) :
+
+1. Lancez le serveur :
+
+    .. code-block:: bash
+
+        cd path/to/the/folder/OC-Project-13-Python-OC-Lettings-FR
+        python manage.py runserver
+
+2. Accédez à l’application dans le navigateur de votre choix :
+
+    Aller à l’adresse http://127.0.0.1:8000/ dans le navigateur.
