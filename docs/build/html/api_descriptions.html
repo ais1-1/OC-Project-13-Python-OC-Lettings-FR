@@ -145,7 +145,7 @@
 </section>
 <section id="circleci">
 <span id="circleci-description"></span><h2>CircleCI<a class="headerlink" href="#circleci" title="Link to this heading"></a></h2>
-<p>CircleCI est utilisé pour la configuration de notre pipeline CI/CD. Il build, teste et déploie en utilisant une automatisation intelligente. Un dépôt de logiciels sur un système de contrôle de version pris en charge (GitHub dans notre cas) doit être autorisé et ajouté en tant que projet sur <a class="reference external" href="https://circleci.com/">circleci.com</a>. Chaque changement de code déclenche ensuite des tests automatisés dans un conteneur ou une machine virtuelle propre. CircleCI exécute chaque tâche dans un conteneur ou une machine virtuelle distinct.</p>
+<p>CircleCI est utilisé pour la configuration de notre pipeline CI/CD. Il compile, teste et déploie en utilisant une automatisation intelligente. Un dépôt de logiciels sur un système de contrôle de version pris en charge (GitHub dans notre cas) doit être autorisé et ajouté en tant que projet sur <a class="reference external" href="https://circleci.com/">circleci.com</a>. Chaque changement de code déclenche ensuite des tests automatisés dans un conteneur ou une machine virtuelle propre. CircleCI exécute chaque tâche dans un conteneur ou une machine virtuelle distinct.</p>
 <p>Le point crucial pour connecter CircleCI à notre projet est un <code class="docutils literal notranslate"><span class="pre">config.yml</span></code>, qui se trouve dans un répertoire <code class="docutils literal notranslate"><span class="pre">.circleci</span></code>. Ce fichier de configuration <code class="docutils literal notranslate"><span class="pre">yaml</span></code> pour CircleCI déclenche le workflow complet sur chaque demande push ou pull sur la branche principale (<code class="docutils literal notranslate"><span class="pre">master</span></code>). Les requêtes push et pull sur les autres branches déclenchent uniquement le workflow de construction et de test (<a class="reference internal" href="user_guide.html#circleci-config"><span class="std std-ref">le fichier de configuration CircleCI</span></a>).</p>
 <p>Voici exemple d’un workflow sur l’interface de CircleCI :</p>
 <a class="reference internal image-reference" href="_images/circle-ci_workflow_example.png"><img alt="CircleCI workflow" src="_images/circle-ci_workflow_example.png" style="width: 600px;" /></a>
@@ -153,7 +153,7 @@
 <section id="sentry">
 <h2>Sentry<a class="headerlink" href="#sentry" title="Link to this heading"></a></h2>
 <p>Sentry est notre plateforme de gestion d’erreurs en temps réel. Son API nous permet de surveiller activement les erreurs et les exceptions dans notre application, ce qui facilite la détection et la correction rapides des problèmes. Les rapports d’erreurs envoyés via cette API sont précieux pour le débogage.</p>
-<p>Pour l’integration nous avons les lignes de codes suivantes dans le fichier <code class="docutils literal notranslate"><span class="pre">oc_lettings_site/settings.py</span></code> :</p>
+<p>Pour l’intégration nous avons les lignes de codes suivantes dans le fichier <code class="docutils literal notranslate"><span class="pre">oc_lettings_site/settings.py</span></code> :</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sentry_sdk</span>
 
 <span class="kn">from</span> <span class="nn">sentry_sdk.integrations.django</span> <span class="kn">import</span> <span class="n">DjangoIntegration</span>

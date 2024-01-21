@@ -47,7 +47,7 @@ Une fois l'environnement virtuel activé exécuter la commande suivante pour ins
 Configurer les variables d'environnement : fichier `.env`
 ---------------------------------------------------------
 
-Les variables d'environnements sont utilisées pour le stockage les valeurs sensibles. Ils doivent stocker dans le fichier `.env`. Pour l'execution de l'application en local au moin les variables suivantes doivent configuer :
+Les variables d'environnements sont utilisées pour le stockage les valeurs sensibles. Ils doivent stocker dans le fichier `.env`. Pour l’exécution de l’application en local au moins les variables suivantes doivent configurer :
 
 .. code-block:: python
     

@@ -4,8 +4,8 @@ Installation
 Prérequis
 ---------
 
-    * Compte GitHub (pour créer un compte sur GitHub voir le `documentation GitHub`_)
-    * Git (pour l'installation de Git voir le `documentation de Git scm`_)
+    * Compte GitHub (pour créer un compte sur GitHub voir la `documentation GitHub`_)
+    * Git (pour l'installation de Git voir la `documentation de Git scm`_)
     * Interpréteur Python, version 3.6 ou supérieure (pour l'installation voir `le site web official de python`_)
 
 Dans le reste de la documentation, il est supposé que la commande ``python`` de votre OS shell exécute l'interpréteur Python ci-dessus.

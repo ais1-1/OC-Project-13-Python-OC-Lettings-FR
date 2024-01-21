@@ -61,7 +61,7 @@ Docker peut créer des images automatiquement en lisant les instructions d'un Do
 
 CircleCI
 --------
-CircleCI est utilisé pour la configuration de notre pipeline CI/CD. Il build, teste et déploie en utilisant une automatisation intelligente. Un dépôt de logiciels sur un système de contrôle de version pris en charge (GitHub dans notre cas) doit être autorisé et ajouté en tant que projet sur `circleci.com`_. Chaque changement de code déclenche ensuite des tests automatisés dans un conteneur ou une machine virtuelle propre. CircleCI exécute chaque tâche dans un conteneur ou une machine virtuelle distinct.
+CircleCI est utilisé pour la configuration de notre pipeline CI/CD. Il compile, teste et déploie en utilisant une automatisation intelligente. Un dépôt de logiciels sur un système de contrôle de version pris en charge (GitHub dans notre cas) doit être autorisé et ajouté en tant que projet sur `circleci.com`_. Chaque changement de code déclenche ensuite des tests automatisés dans un conteneur ou une machine virtuelle propre. CircleCI exécute chaque tâche dans un conteneur ou une machine virtuelle distinct.
 
 Le point crucial pour connecter CircleCI à notre projet est un ``config.yml``, qui se trouve dans un répertoire ``.circleci``. Ce fichier de configuration ``yaml`` pour CircleCI déclenche le workflow complet sur chaque demande push ou pull sur la branche principale (``master``). Les requêtes push et pull sur les autres branches déclenchent uniquement le workflow de construction et de test (:ref:`le fichier de configuration CircleCI <circleci-config>`).
 
@@ -77,7 +77,7 @@ Sentry
 ------
 Sentry est notre plateforme de gestion d’erreurs en temps réel. Son API nous permet de surveiller activement les erreurs et les exceptions dans notre application, ce qui facilite la détection et la correction rapides des problèmes. Les rapports d’erreurs envoyés via cette API sont précieux pour le débogage.
 
-Pour l'integration nous avons les lignes de codes suivantes dans le fichier ``oc_lettings_site/settings.py`` :
+Pour l'intégration nous avons les lignes de codes suivantes dans le fichier ``oc_lettings_site/settings.py`` :
 
 .. code-block:: python 
     

@@ -42,7 +42,7 @@ Lancez des tests à l'aide des commandes suivantes :
 
 Couverture de test
 ------------------
-Le projet utilise Coverage.py et pytest-cov (plugin Coverage.py pour pytest) pour une meilleur lecture du couverture.
+Le projet utilise Coverage.py et pytest-cov (plugin Coverage.py pour pytest) pour une meilleur lecture de la couverture.
 
 La configuration de la couverture, comme les fichiers à exclure, se trouve dans le fichier ``.coveragerc``.
 
@@ -54,7 +54,7 @@ Pour voir le rapport de couverture sur le terminal :
     cd path/to/the/folder/OC-Project-13-Python-OC-Lettings-FR
     coverage report -m
 
-Pour voir le rapport avec une rapport de test :
+Pour voir le rapport avec un rapport de test :
 
 .. code-block:: bash
 
@@ -68,7 +68,7 @@ Utilisation de Sentry
 
 1. **Configuration**
 
-Pour utiliser Sentry et pouvoir utiliser le monitoring sur le projet accédé à votre compte ( si vous n'en avez pas encore une, `créer un compte Sentry <https://sentry.io/signup/>`_).
+Pour utiliser Sentry et pouvoir utiliser le monitoring sur le projet accédé à votre compte (si vous n'en avez pas encore une, `créer un compte Sentry <https://sentry.io/signup/>`_).
 
     * Créer un nouveau projet
 
@@ -159,10 +159,10 @@ Pousser l'image vers le DockerHub
 
 .. _run-website-docker:
 
-Lancer le site localement avec un image Docker
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Lancer le site localement avec une image Docker
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Il y a trois façon pour lancer le site avec un image Docker.
+Il y a trois façons pour lancer le site avec une image Docker.
 
     * Avec l'image que vous avez construit :
 
@@ -369,9 +369,9 @@ Le fichier de configuration contient trois *jobs* dans l'ordre suivant :
 
     * ``checkout`` : CircleCI récupère le code source via SSH vers un chemin configuré (le répertoire de travail, par défaut).
     * ``restore_cache`` : restaure un cache précédemment enregistré.
-    * ``run`` : execute les commandes dans la partie ``command``, ici créer et activer le ``venv``. Ensuite, installer des dépendances.
+    * ``run`` : exécute les commandes dans la partie ``command``, ici créer et activer le ``venv``. Ensuite, installer des dépendances.
     * ``save_cache`` : génère et enregistre un cache d'un fichier, de plusieurs fichiers ou dossiers. Dans notre cas, nous sauvegardons un cache des packages Python installés obtenus à l'étape précédente.
-    * Ensuite, il execute les tests unitaires et le passe seulement si le couverture de tests est supérieur à 80.
+    * Ensuite, il exécute les tests unitaires et le passe seulement si la couverture de tests est supérieur à 80.
     * Enfin, il vérifie si le linting passe sans erreurs.
 
 2. Conteneuriser (containerize)
@@ -389,7 +389,7 @@ Le fichier de configuration contient trois *jobs* dans l'ordre suivant :
 
 Voir la partie :ref:`deployment-procedures` pour l'explication.
 
-.. note:: Pour voir un tableau de bord privé CircleCI vous avez besoin d'un lien d'invite (voir plus de détails sur le `documentation CircleCI`_) et pour voir un tableau de bord public CircleCI vous avez besoin de s'authentifier (`la page de connexion CircleCI <https://circleci.com/signup/>`_).
+.. note:: Pour voir un tableau de bord privé CircleCI vous avez besoin d'un lien d'invite (voir plus de détails sur la `documentation CircleCI`_) et pour voir un tableau de bord public CircleCI vous avez besoin de s'authentifier (`la page de connexion CircleCI <https://circleci.com/signup/>`_).
 
 
 .. _documentation CircleCI: https://circleci.com/docs/first-steps/#sign-up-with-an-invite
