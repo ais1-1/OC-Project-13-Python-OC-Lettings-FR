@@ -2,6 +2,15 @@
 
 Site web d'Orange County Lettings
 
+## Objectif
+
+  * Refonte de l'architecture modulaire dans le repository GitHub
+  * Réduction de diverses dettes techniques sur le projet
+  * Ajout d'un pipeline CI/CD ainsi que son déploiement
+  * Surveillance de l’application et suivi des erreurs via Sentry
+  * Création de la documentation technique de l’application avec Read The Docs et Sphinx
+
+
 ## Développement local
 
 ### Prérequis
