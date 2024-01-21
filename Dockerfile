@@ -21,6 +21,12 @@ ENV DEBUG $DEBUG
 ENV SENTRY_DSN $SENTRY_DSN
 ENV ALLOWED_HOSTS $ALLOWED_HOSTS
 
+# Build arguments
+ARG VERSION
+ENV VERSION $VERSION
+ARG BUILD_TIMESTAMP
+ENV BUILD_TIMESTAMP $BUILD_TIMESTAMP
+
 # Install dependencies and copy the application files
 COPY --chown=myuser:myuser requirements.txt requirements.txt
 RUN pip install --user --no-cache-dir -r requirements.txt
