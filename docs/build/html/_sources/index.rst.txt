@@ -18,7 +18,8 @@ Bienvenue dans la documentation d'Orange County Lettings site web 2.0 !
    Base de données <database>
    Description des API <api_descriptions>
    Guide d’utilisation <user_guide>
-   Procédures de déploiement et gestion de l'application <deployment_procedure_and_management>
+   Procédures de déploiement <deployment_procedure>
+   Gestion de l'application <application_management>
 
 
 

@@ -1,6 +1,10 @@
 Procédures de déploiement et gestion de l'application
 =====================================================
 
+.. _deployment-procedures:
+
+Procédures de déploiement
+-------------------------
 
 heroku deploy explain ??
 

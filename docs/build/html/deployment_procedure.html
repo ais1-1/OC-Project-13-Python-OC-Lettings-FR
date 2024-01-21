@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Procédures de déploiement &mdash; Documentation oc-lettings v2.0 1.0</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=7a28dfa3"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/translations.js?v=d99ca74e"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Gestion de l’application - Django Admin" href="application_management.html" />
+    <link rel="prev" title="Guide d’utilisation" href="user_guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            oc-lettings v2.0
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Sommaire:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="project_description.html">Description du projet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Guide de démarrage rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technologies_and_languages.html">Technologies et langages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Base de données</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_descriptions.html">Description des API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide.html">Guide d’utilisation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Procédures de déploiement</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#deploiement-manuel">Déploiement manuel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#livraison-continue-cd">Livraison continue (CD)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="application_management.html">Gestion de l'application</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">oc-lettings v2.0</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Procédures de déploiement</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/deployment_procedure.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="procedures-de-deploiement">
+<span id="deployment-procedures"></span><h1>Procédures de déploiement<a class="headerlink" href="#procedures-de-deploiement" title="Link to this heading"></a></h1>
+<p>Une fois nos versions d’application exécutées, nous devrons déployer l’application pour pouvoir la voir en ligne.</p>
+<section id="deploiement-manuel">
+<h2>Déploiement manuel<a class="headerlink" href="#deploiement-manuel" title="Link to this heading"></a></h2>
+<p>Pour déployer notre image Docker depuis notre machine de développement, nous devons avoir :</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://devcenter.heroku.com/articles/account-verification">Un compte Heroku vérifié</a></p></li>
+<li><p><a class="reference external" href="https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli">Heroku CLI installé</a></p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/config/daemon/start/">Démon Docker</a></p></li>
+<li><p>Lu le chapitre <a class="reference internal" href="api_descriptions.html#heroku-description"><span class="std std-ref">Heroku</span></a></p></li>
+</ul>
+<p>Suivez les étapes pour déploiement :</p>
+<ol class="arabic simple">
+<li><p>Tout d’abord, vous devrez créer l’application dans Heroku, en utilisant le site Web Heroku. Pour créer une application rendez-vous sur le Dashboard, cliquez sur <em>New</em> et <em>Create new app</em>.</p></li>
+<li><p>Après cela, vous devrez vous connecter à Heroku depuis votre terminal ou cmd avec la commande suivante :</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>heroku<span class="w"> </span>login
+</pre></div>
+</div>
+<p>Après avoir exécuté cette commande, un navigateur s’ouvrira et vous amènera au site Web Heroku pour vous authentifier. Une fois que vous avez terminé, vous serez de retour sur votre terminal, connecté.</p>
+<ol class="arabic simple" start="3">
+<li><p>Ensuite, vous devrez vous connecter au registre de conteneurs Heroku :</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>heroku<span class="w"> </span>container:login
+</pre></div>
+</div>
+<p>Aucune information d’identification ne sera demandée pour le moment.</p>
+<ol class="arabic simple" id="heroku-config-vars" start="4">
+<li><p>Configurez les variables d’environnements suivant dans le site Heroku dans la partie <em>Settings</em> allez dans <em>Config Vars</em> :</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>SECRET_KEY
+SENTRY_DSN
+DEBUG
+ALLOWED-HOSTS
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/heroku_dashboard.png"><img alt="Config vars dans le site Heroku" src="_images/heroku_dashboard.png" style="width: 800px;" /></a>
+<ol class="arabic simple" start="5">
+<li><p>Maintenant, pour créer notre image Docker et la transmettre à Heroku, exécutez :</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>heroku<span class="w"> </span>container:push<span class="w"> </span>-a<span class="w"> </span>&lt;heroku-app-name&gt;<span class="w"> </span>web
+</pre></div>
+</div>
+<p>Vous devez disposer du Dockerfile à la racine du projet pour pouvoir créer l’image.</p>
+<ol class="arabic simple" start="6">
+<li><p>Enfin, lorsque l’image a été poussée avec succès, vous devez faire la release :</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>heroku<span class="w"> </span>container:release<span class="w"> </span>-a<span class="w"> </span>&lt;heroku-app-name&gt;<span class="w"> </span>web
+</pre></div>
+</div>
+</section>
+<section id="livraison-continue-cd">
+<h2>Livraison continue (CD)<a class="headerlink" href="#livraison-continue-cd" title="Link to this heading"></a></h2>
+<p>Pour automatiser le pipeline de déploiement ci-dessus, pour lancer une nouvelle version de notre application à chaque fois qu’une validation est effectuée dans la branche principale. Vous devez créer un nouveau <code class="docutils literal notranslate"><span class="pre">job</span></code> dans la configuration CircleCI. Voir la partie <code class="docutils literal notranslate"><span class="pre">deploy</span></code> dans <a class="reference internal" href="user_guide.html#circleci-config"><span class="std std-ref">CircleCI config</span></a>.</p>
+<p>Ce que font les commandes du <code class="docutils literal notranslate"><span class="pre">job</span></code> sur l’image de construction Docker CircleCI est :</p>
+<ol class="arabic simple">
+<li><p>Installer Heroku CLI sur la machine de construction :</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>curl<span class="w"> </span>https://cli-assets.heroku.com/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Se connecter au registre Heroku en passant notre clé API Heroku comme paramètre pour ne pas avoir besoin de vous authentifier avec la commande de connexion Heroku. (Contourner la connexion au navigateur) :</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">HEROKU_API_KEY</span><span class="o">=</span><span class="si">${</span><span class="nv">HEROKU_API_KEY</span><span class="si">}</span><span class="w"> </span>heroku<span class="w"> </span>container:login
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Transmettre les valeurs des variables d’environnement ou vous pouvez faire comme dans <a class="reference internal" href="#heroku-config-vars"><span class="std std-ref">l’explication ci-dessus</span></a> :</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">HEROKU_API_KEY</span><span class="o">=</span><span class="si">${</span><span class="nv">HEROKU_API_KEY</span><span class="si">}</span><span class="w"> </span>heroku<span class="w"> </span>config:set<span class="w"> </span><span class="nv">SECRET_KEY</span><span class="o">=</span><span class="nv">$SECRET_KEY</span><span class="w"> </span>-a<span class="w"> </span><span class="nv">$HEROKU_APP_NAME</span>
+<span class="nv">HEROKU_API_KEY</span><span class="o">=</span><span class="si">${</span><span class="nv">HEROKU_API_KEY</span><span class="si">}</span><span class="w"> </span>heroku<span class="w"> </span>config:set<span class="w"> </span><span class="nv">SENTRY_DSN</span><span class="o">=</span><span class="nv">$SENTRY_DSN</span><span class="w"> </span>-a<span class="w"> </span><span class="nv">$HEROKU_APP_NAME</span>
+<span class="nv">HEROKU_API_KEY</span><span class="o">=</span><span class="si">${</span><span class="nv">HEROKU_API_KEY</span><span class="si">}</span><span class="w"> </span>heroku<span class="w"> </span>config:set<span class="w"> </span><span class="nv">DEBUG</span><span class="o">=</span><span class="nv">$DEBUG</span><span class="w"> </span>-a<span class="w"> </span><span class="nv">$HEROKU_APP_NAME</span>
+<span class="nv">HEROKU_API_KEY</span><span class="o">=</span><span class="si">${</span><span class="nv">HEROKU_API_KEY</span><span class="si">}</span><span class="w"> </span>heroku<span class="w"> </span>config:set<span class="w"> </span>ALLOWED-HOSTS<span class="o">=</span><span class="nv">$ALLOWED</span>-HOSTS<span class="w"> </span>-a<span class="w"> </span><span class="nv">$HEROKU_APP_NAME</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Construire et transférer notre image Docker vers le registre Heroku :</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">HEROKU_API_KEY</span><span class="o">=</span><span class="si">${</span><span class="nv">HEROKU_API_KEY</span><span class="si">}</span><span class="w"> </span>heroku<span class="w"> </span>container:push<span class="w"> </span>-a<span class="w"> </span><span class="nv">$HEROKU_APP_NAME</span><span class="w"> </span>web
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Sortie de la nouvelle version de notre application :</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">HEROKU_API_KEY</span><span class="o">=</span><span class="si">${</span><span class="nv">HEROKU_API_KEY</span><span class="si">}</span><span class="w"> </span>heroku<span class="w"> </span>container:release<span class="w"> </span>-a<span class="w"> </span><span class="nv">$HEROKU_APP_NAME</span><span class="w"> </span>web
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Le jeton Heroku, HEROKU_API_KEY, est disponible dans les paramètres du compte avec le nom <em>Heroku API Key</em>.</p>
+</div>
+<p>L’application publiée sera disponible à partir du tableau de bord Heroku en cliquant sur le bouton « Open app ». Exemple :</p>
+<a class="reference internal image-reference" href="_images/deployed_app.png"><img alt="Application déployé" src="_images/deployed_app.png" style="width: 800px;" /></a>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="user_guide.html" class="btn btn-neutral float-left" title="Guide d’utilisation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="application_management.html" class="btn btn-neutral float-right" title="Gestion de l’application - Django Admin" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2024, Aiswarya Kaitheri Kandoth.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

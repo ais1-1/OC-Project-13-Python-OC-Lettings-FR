@@ -71,6 +71,8 @@ Il y a deux options pour la création du fichier `.env` :
 
 **Une fois le fichier `.env` créé, ouvrez-le avec un éditeur de texte et ajoutez les bonnes valeurs pour chaque variable.**
 
+.. _run-website-runserver:
+
 Exécuter l’Application
 ----------------------
 

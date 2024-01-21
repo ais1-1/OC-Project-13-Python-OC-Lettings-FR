@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Description des API &mdash; Documentation oc-lettings 1.0</title>
+  <title>Description des API &mdash; Documentation oc-lettings v2.0 1.0</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
@@ -35,7 +35,7 @@
           
           
           <a href="index.html" class="icon icon-home">
-            oc-lettings
+            oc-lettings v2.0
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -61,7 +61,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="user_guide.html">Guide d’utilisation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="deployment_procedure_and_management.html">Procédures de déploiement et gestion de l'application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment_procedure.html">Procédures de déploiement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="application_management.html">Gestion de l'application</a></li>
 </ul>
 
         </div>
@@ -70,7 +71,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">oc-lettings</a>
+          <a href="index.html">oc-lettings v2.0</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -99,7 +100,7 @@
 <h2>Docker<a class="headerlink" href="#docker" title="Link to this heading"></a></h2>
 <p>Docker est utilisé pour conteneuriser notre application. L’API Docker permet la gestion programmatique des conteneurs. Il joue un rôle crucial dans la création, la mise à l’échelle et la gestion des conteneurs pour nos services.</p>
 <p>Docker peut créer des images automatiquement en lisant les instructions d’un Dockerfile. Un Dockerfile est un document texte qui contient toutes les commandes qu’un utilisateur peut appeler sur la ligne de commande pour assembler une image. Voici celui que nous utilisons :</p>
-<div class="highlight-docker notranslate"><div class="highlight"><pre><span></span><span class="c"># Defines the base image to use</span>
+<div class="highlight-docker notranslate" id="dockerfile"><div class="highlight"><pre><span></span><span class="c"># Defines the base image to use</span>
 <span class="k">FROM</span><span class="w"> </span><span class="s">python:3.10-alpine</span>
 
 <span class="c"># Setup python environment variables</span>
@@ -122,6 +123,12 @@
 <span class="k">ENV</span><span class="w"> </span>SENTRY_DSN<span class="w"> </span><span class="nv">$SENTRY_DSN</span>
 <span class="k">ENV</span><span class="w"> </span>ALLOWED_HOSTS<span class="w"> </span><span class="nv">$ALLOWED_HOSTS</span>
 
+<span class="c"># Build arguments</span>
+<span class="k">ARG</span><span class="w"> </span>VERSION
+<span class="k">ENV</span><span class="w"> </span>VERSION<span class="w"> </span><span class="nv">$VERSION</span>
+<span class="k">ARG</span><span class="w"> </span>BUILD_TIMESTAMP
+<span class="k">ENV</span><span class="w"> </span>BUILD_TIMESTAMP<span class="w"> </span><span class="nv">$BUILD_TIMESTAMP</span>
+
 <span class="c"># Install dependencies and copy the application files</span>
 <span class="k">COPY</span><span class="w"> </span>--chown<span class="o">=</span>myuser:myuser<span class="w"> </span>requirements.txt<span class="w"> </span>requirements.txt
 <span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt
@@ -137,106 +144,11 @@
 </div>
 </section>
 <section id="circleci">
-<h2>CircleCI<a class="headerlink" href="#circleci" title="Link to this heading"></a></h2>
+<span id="circleci-description"></span><h2>CircleCI<a class="headerlink" href="#circleci" title="Link to this heading"></a></h2>
 <p>CircleCI est utilisé pour la configuration de notre pipeline CI/CD. Il build, teste et déploie en utilisant une automatisation intelligente. Un dépôt de logiciels sur un système de contrôle de version pris en charge (GitHub dans notre cas) doit être autorisé et ajouté en tant que projet sur <a class="reference external" href="https://circleci.com/">circleci.com</a>. Chaque changement de code déclenche ensuite des tests automatisés dans un conteneur ou une machine virtuelle propre. CircleCI exécute chaque tâche dans un conteneur ou une machine virtuelle distinct.</p>
-<p>Le point crucial pour connecter CircleCI à notre projet est un <code class="docutils literal notranslate"><span class="pre">config.yml</span></code>, qui se trouve dans un répertoire <code class="docutils literal notranslate"><span class="pre">.circleci</span></code>. Ce fichier de configuration <code class="docutils literal notranslate"><span class="pre">yaml</span></code> pour CircleCI déclenche le workflow complet sur chaque demande push ou pull sur la branche principale (<code class="docutils literal notranslate"><span class="pre">master</span></code>). Les requêtes push et pull sur les autres branches déclenchent uniquement le workflow de construction et de test :</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.1</span>
-
-<span class="nt">jobs</span><span class="p">:</span>
-<span class="nt">build-and-test</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">docker</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cimg/python:3.10.11</span>
-<span class="w">    </span><span class="nt">resource_class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">small</span>
-<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">checkout</span><span class="w"> </span><span class="c1"># fetches your source code over SSH to the configured path</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">restore_cache</span><span class="p">:</span><span class="w"> </span><span class="c1"># restores a previously saved cache</span>
-<span class="w">        </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deps1-{{ .Branch }}-{{ checksum &quot;requirements.txt&quot; }}</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Initialize venv / Install deps</span>
-<span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">            </span><span class="no">python -m venv venv</span>
-<span class="w">            </span><span class="no">. venv/bin/activate</span>
-<span class="w">            </span><span class="no">pip install -r requirements.txt</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">save_cache</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deps1-{{ .Branch }}-{{ checksum &quot;requirements.txt&quot; }}</span>
-<span class="w">        </span><span class="nt">paths</span><span class="p">:</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;.venv&quot;</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run coverage tests</span>
-<span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">            </span><span class="no">. venv/bin/activate</span>
-<span class="w">            </span><span class="no">pytest --cov=.</span>
-<span class="w">            </span><span class="no">coverage report --fail-under=80</span>
-
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Linting</span>
-<span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">            </span><span class="no">. venv/bin/activate</span>
-<span class="w">            </span><span class="no">flake8</span>
-
-<span class="nt">containerize</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">docker</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cimg/python:3.10.11</span>
-<span class="w">    </span><span class="nt">resource_class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">medium</span>
-<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">checkout</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">setup_remote_docker</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Containerize</span>
-<span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">            </span><span class="no">echo &quot;$DOCKER_PASSWORD&quot; | docker login --username $DOCKER_USER --password-stdin</span>
-<span class="w">            </span><span class="no">VERSION=$CIRCLE_SHA1</span>
-<span class="w">            </span><span class="no">TAG=&quot;$DOCKER_REPO:$VERSION&quot;</span>
-<span class="w">            </span><span class="no">LATEST=&quot;${DOCKER_REPO}:latest&quot;</span>
-<span class="w">            </span><span class="no">BUILD_TIMESTAMP=$( date &#39;+%F_%H:%M:%S&#39; )</span>
-<span class="w">            </span><span class="no">docker build -t &quot;$TAG&quot; -t &quot;$LATEST&quot; --build-arg VERSION=&quot;$VERSION&quot; --build-arg BUILD_TIMESTAMP=&quot;$BUILD_TIMESTAMP&quot; .</span>
-<span class="w">            </span><span class="no">docker push &quot;$TAG&quot;</span>
-<span class="w">            </span><span class="no">docker push &quot;$LATEST&quot;</span>
-
-<span class="nt">deploy</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">machine</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-2004:202010-01</span>
-<span class="w">    </span><span class="nt">resource_class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">medium</span>
-<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">checkout</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy Docker image to Heroku</span>
-<span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">            </span><span class="no">sudo curl https://cli-assets.heroku.com/install.sh | sh</span>
-<span class="w">            </span><span class="no">HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login</span>
-<span class="w">            </span><span class="no">HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:set SECRET_KEY=$SECRET_KEY -a $HEROKU_APP_NAME</span>
-<span class="w">            </span><span class="no">HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:set SENTRY_DSN=$SENTRY_DSN -a $HEROKU_APP_NAME</span>
-<span class="w">            </span><span class="no">HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:set DEBUG=$DEBUG -a $HEROKU_APP_NAME</span>
-<span class="w">            </span><span class="no">HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a $HEROKU_APP_NAME web</span>
-<span class="w">            </span><span class="no">HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a $HEROKU_APP_NAME web</span>
-
-<span class="nt">workflows</span><span class="p">:</span>
-<span class="nt">main</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">jobs</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build-and-test</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerize</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">requires</span><span class="p">:</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build-and-test</span>
-<span class="w">        </span><span class="nt">filters</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">branches</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">only</span><span class="p">:</span>
-<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">master</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">deploy</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">requires</span><span class="p">:</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build-and-test</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">containerize</span>
-<span class="w">        </span><span class="nt">filters</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">branches</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">only</span><span class="p">:</span>
-<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">master</span>
-</pre></div>
-</div>
+<p>Le point crucial pour connecter CircleCI à notre projet est un <code class="docutils literal notranslate"><span class="pre">config.yml</span></code>, qui se trouve dans un répertoire <code class="docutils literal notranslate"><span class="pre">.circleci</span></code>. Ce fichier de configuration <code class="docutils literal notranslate"><span class="pre">yaml</span></code> pour CircleCI déclenche le workflow complet sur chaque demande push ou pull sur la branche principale (<code class="docutils literal notranslate"><span class="pre">master</span></code>). Les requêtes push et pull sur les autres branches déclenchent uniquement le workflow de construction et de test (<a class="reference internal" href="user_guide.html#circleci-config"><span class="std std-ref">le fichier de configuration CircleCI</span></a>).</p>
 <p>Voici exemple d’un workflow sur l’interface de CircleCI :</p>
 <a class="reference internal image-reference" href="_images/circle-ci_workflow_example.png"><img alt="CircleCI workflow" src="_images/circle-ci_workflow_example.png" style="width: 600px;" /></a>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Pour voir un tableau de bord privé CircleCI vous avez besoin d’un lien d’invite (voir plus de détails sur le <a class="reference external" href="https://circleci.com/docs/first-steps/#sign-up-with-an-invite">documentation CircleCI</a>) et pour voir un tableau de bord public CircleCI vous avez besoin de s’authentifier (<a class="reference external" href="https://circleci.com/signup/">la page de connexion CircleCI</a>).</p>
-</div>
 </section>
 <section id="sentry">
 <h2>Sentry<a class="headerlink" href="#sentry" title="Link to this heading"></a></h2>
@@ -264,7 +176,7 @@
 <p>Pour avoir cette valeur, <a class="reference external" href="https://sentry.io/signup/">créer un compte Sentry</a>, ensuite créer un projet pour l’application. Le <code class="docutils literal notranslate"><span class="pre">SENTRY_DSN</span></code> sera disponible dans <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Client</span> <span class="pre">Keys</span> <span class="pre">(DSN)</span></code>.</p>
 </section>
 <section id="heroku">
-<h2>Heroku<a class="headerlink" href="#heroku" title="Link to this heading"></a></h2>
+<span id="heroku-description"></span><h2>Heroku<a class="headerlink" href="#heroku" title="Link to this heading"></a></h2>
 <p>Heroku est notre plateforme d’hébergement cloud pour l’application. L’API Heroku est utilisée pour gérer les ressources de l’application, notamment le scaling automatique, le déploiement continu et la surveillance des performances.</p>
 <p>Pour l’utiliser il faut un <a class="reference external" href="https://signup.heroku.com/dc">compte Heroku</a>, <a class="reference external" href="https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli">Heroku CLI</a> installé, Git installé et un fichier texte dans le répertoire racine de votre application nommé <code class="docutils literal notranslate"><span class="pre">Procfile</span></code> sans extension de fichier.</p>
 <p>Le <code class="docutils literal notranslate"><span class="pre">Procfile</span></code> indique à Heroku quelle(s) commande(s) exécuter pour démarrer l’application. Voici notre <code class="docutils literal notranslate"><span class="pre">Procfile</span></code> :</p>

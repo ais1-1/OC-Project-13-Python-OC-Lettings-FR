@@ -12,7 +12,7 @@ sys.path.insert(0, os.path.abspath("../.."))
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "oc-lettings"
+project = "oc-lettings v2.0"
 copyright = "2024, Aiswarya Kaitheri Kandoth"
 author = "Aiswarya Kaitheri Kandoth"
 release = "1.0"

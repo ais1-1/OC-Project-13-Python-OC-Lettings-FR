@@ -13,6 +13,9 @@ Docker est utilisé pour conteneuriser notre application. L'API Docker permet la
 
 Docker peut créer des images automatiquement en lisant les instructions d'un Dockerfile. Un Dockerfile est un document texte qui contient toutes les commandes qu'un utilisateur peut appeler sur la ligne de commande pour assembler une image. Voici celui que nous utilisons :
 
+
+.. _dockerfile:
+
 .. code-block:: docker
 
     # Defines the base image to use
@@ -38,6 +41,12 @@ Docker peut créer des images automatiquement en lisant les instructions d'un Do
     ENV SENTRY_DSN $SENTRY_DSN
     ENV ALLOWED_HOSTS $ALLOWED_HOSTS
 
+    # Build arguments
+    ARG VERSION
+    ENV VERSION $VERSION
+    ARG BUILD_TIMESTAMP
+    ENV BUILD_TIMESTAMP $BUILD_TIMESTAMP
+
     # Install dependencies and copy the application files
     COPY --chown=myuser:myuser requirements.txt requirements.txt
     RUN pip install --user --no-cache-dir -r requirements.txt
@@ -48,103 +57,14 @@ Docker peut créer des images automatiquement en lisant les instructions d'un Do
 
 .. note:: Vous avez besoin d'un compte DockerHub si vous souhaitez pull ou push des images Docker (`la page de connexion <https://hub.docker.com/signup>`_).
 
+.. _circleci-description:
+
 CircleCI
 --------
 CircleCI est utilisé pour la configuration de notre pipeline CI/CD. Il build, teste et déploie en utilisant une automatisation intelligente. Un dépôt de logiciels sur un système de contrôle de version pris en charge (GitHub dans notre cas) doit être autorisé et ajouté en tant que projet sur `circleci.com`_. Chaque changement de code déclenche ensuite des tests automatisés dans un conteneur ou une machine virtuelle propre. CircleCI exécute chaque tâche dans un conteneur ou une machine virtuelle distinct.
 
-Le point crucial pour connecter CircleCI à notre projet est un ``config.yml``, qui se trouve dans un répertoire ``.circleci``. Ce fichier de configuration ``yaml`` pour CircleCI déclenche le workflow complet sur chaque demande push ou pull sur la branche principale (``master``). Les requêtes push et pull sur les autres branches déclenchent uniquement le workflow de construction et de test :
+Le point crucial pour connecter CircleCI à notre projet est un ``config.yml``, qui se trouve dans un répertoire ``.circleci``. Ce fichier de configuration ``yaml`` pour CircleCI déclenche le workflow complet sur chaque demande push ou pull sur la branche principale (``master``). Les requêtes push et pull sur les autres branches déclenchent uniquement le workflow de construction et de test (:ref:`le fichier de configuration CircleCI <circleci-config>`).
 
-.. code-block:: yaml
-
-    version: 2.1
-
-    jobs:
-    build-and-test:
-        docker:
-        - image: cimg/python:3.10.11
-        resource_class: small
-        steps:
-        - checkout # fetches your source code over SSH to the configured path
-        - restore_cache: # restores a previously saved cache
-            key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
-        - run:
-            name: Initialize venv / Install deps
-            command: |
-                python -m venv venv
-                . venv/bin/activate
-                pip install -r requirements.txt
-        - save_cache:
-            key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
-            paths:
-                - ".venv"
-        - run:
-            name: Run coverage tests
-            command: |
-                . venv/bin/activate
-                pytest --cov=.
-                coverage report --fail-under=80
-
-        - run:
-            name: Linting
-            command: |
-                . venv/bin/activate
-                flake8
-    
-    containerize:
-        docker:
-        - image: cimg/python:3.10.11
-        resource_class: medium
-        steps:
-        - checkout
-        - setup_remote_docker
-        - run:
-            name: Containerize
-            command: |
-                echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USER --password-stdin
-                VERSION=$CIRCLE_SHA1
-                TAG="$DOCKER_REPO:$VERSION"
-                LATEST="${DOCKER_REPO}:latest"
-                BUILD_TIMESTAMP=$( date '+%F_%H:%M:%S' )
-                docker build -t "$TAG" -t "$LATEST" --build-arg VERSION="$VERSION" --build-arg BUILD_TIMESTAMP="$BUILD_TIMESTAMP" .
-                docker push "$TAG" 
-                docker push "$LATEST"
-    
-    deploy:
-        machine:
-        image: ubuntu-2004:202010-01
-        resource_class: medium
-        steps:
-        - checkout
-        - run:
-            name: Deploy Docker image to Heroku
-            command: |
-                sudo curl https://cli-assets.heroku.com/install.sh | sh
-                HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
-                HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:set SECRET_KEY=$SECRET_KEY -a $HEROKU_APP_NAME
-                HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:set SENTRY_DSN=$SENTRY_DSN -a $HEROKU_APP_NAME
-                HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:set DEBUG=$DEBUG -a $HEROKU_APP_NAME
-                HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a $HEROKU_APP_NAME web
-                HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a $HEROKU_APP_NAME web
-
-    workflows:
-    main:
-        jobs:
-        - build-and-test
-        - containerize:
-            requires:
-                - build-and-test
-            filters:
-                branches:
-                only:
-                    - master
-        - deploy:
-            requires:
-                - build-and-test
-                - containerize
-            filters:
-                branches:
-                only:
-                    - master
 
 Voici exemple d'un workflow sur l'interface de CircleCI :
 
@@ -152,8 +72,6 @@ Voici exemple d'un workflow sur l'interface de CircleCI :
   :width: 600
   :alt: CircleCI workflow
 
-
-.. note:: Pour voir un tableau de bord privé CircleCI vous avez besoin d'un lien d'invite (voir plus de détails sur le `documentation CircleCI`_) et pour voir un tableau de bord public CircleCI vous avez besoin de s'authentifier (`la page de connexion CircleCI <https://circleci.com/signup/>`_).
 
 Sentry
 ------
@@ -184,6 +102,7 @@ La valeur de ``SENTRY_DSN`` doivent configurer dans le fichier ``.env``.
 
 Pour avoir cette valeur, `créer un compte Sentry <https://sentry.io/signup/>`_, ensuite créer un projet pour l'application. Le ``SENTRY_DSN`` sera disponible dans ``Project Settings > Client Keys (DSN)``.
 
+.. _heroku-description:
 
 Heroku
 ------
@@ -202,4 +121,3 @@ Ce ``Procfile`` utilise Gunicorn, le serveur web de production que nous avons ch
 
 .. _documentation officielle: https://docs.djangoproject.com/fr/3.0/ref/
 .. _circleci.com: https://circleci.com/
-.. _documentation CircleCI: https://circleci.com/docs/first-steps/#sign-up-with-an-invite
