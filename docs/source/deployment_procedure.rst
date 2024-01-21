@@ -104,7 +104,7 @@ Ce que font les commandes du ``job`` sur l'image de construction Docker CircleCI
 
     HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a $HEROKU_APP_NAME web
 
-.. note:: Le jeton Heroku, HEROKU_API_KEY, est disponible dans les paramètres du compte avec le nom *Heroku API Key*.
+.. note:: Le jeton Heroku, HEROKU_API_KEY, est disponible dans les paramètres du compte avec le nom *Heroku API Key*. Il ne faut pas oublier d'ajouter cette variable dans les variables d'environnement CircleCI (voir comment faire sur la partie `Définir les variables d'environnement <https://circleci.com/docs/set-environment-variable/#set-an-environment-variable-in-a-project>`_ de la documentation CircleCI )..
 
 L'application publiée sera disponible à partir du tableau de bord Heroku en cliquant sur le bouton « Open app ». Exemple :
 
