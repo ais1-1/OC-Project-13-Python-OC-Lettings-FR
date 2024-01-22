@@ -139,6 +139,8 @@ pytest
 <p>Pour voir le rapport de couverture sur le terminal :</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Déplacer à la racine du dossier</span>
 <span class="nb">cd</span><span class="w"> </span>path/to/the/folder/OC-Project-13-Python-OC-Lettings-FR
+<span class="c1"># Activer l&#39;environnement virtuel</span>
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
 coverage<span class="w"> </span>report<span class="w"> </span>-m
 </pre></div>
 </div>
@@ -297,6 +299,9 @@ Vous<span class="w"> </span>pouvez<span class="w"> </span>taper<span class="w"> 
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./run_latest_docker_image_locally.sh
 </pre></div>
 </div>
+<ol class="arabic simple" start="3">
+<li><p>Accédez le site dans un navigateur à <a class="reference external" href="http://0.0.0.0:8000/">http://0.0.0.0:8000/</a>.</p></li>
+</ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <ul class="simple">
@@ -318,7 +323,7 @@ Vous<span class="w"> </span>pouvez<span class="w"> </span>taper<span class="w"> 
 <h2>Utilisation de CircleCI<a class="headerlink" href="#utilisation-de-circleci" title="Link to this heading"></a></h2>
 <p>Le compte CircleCI est connecté au dépôt GitHub. Pour créer un projet de la même manière, suivez <a class="reference external" href="https://circleci.com/docs/getting-started/#">les étapes de la documentation circleCI</a>.</p>
 <p>Au lieu de l’étape de création automatique du fichier de configuration, vous pouvez utiliser celui qui se trouve à la racine du dépôt (voir <a class="reference external" href="https://circleci.com/docs/getting-started/#">étape 4</a> dans la documentation).</p>
-<p>Comme indiquer dans la partie <a class="reference internal" href="api_descriptions.html#circleci-description"><span class="std std-ref">CircleCI</span></a> Le point crucial pour connecter CircleCI à notre projet est un <code class="docutils literal notranslate"><span class="pre">config.yml</span></code>, qui se trouve dans un répertoire <code class="docutils literal notranslate"><span class="pre">.circleci</span></code>. Ce fichier de configuration <code class="docutils literal notranslate"><span class="pre">yaml</span></code> pour CircleCI déclenche le workflow complet sur chaque demande push ou pull sur la branche principale (<code class="docutils literal notranslate"><span class="pre">master</span></code>). Les requêtes push et pull sur les autres branches déclenchent uniquement le workflow de construction et de test.</p>
+<p>Comme indiquer dans la partie <a class="reference internal" href="api_descriptions.html#circleci-description"><span class="std std-ref">CircleCI</span></a>, le point crucial pour connecter CircleCI à notre projet est un <code class="docutils literal notranslate"><span class="pre">config.yml</span></code>, qui se trouve dans un répertoire <code class="docutils literal notranslate"><span class="pre">.circleci</span></code>. Ce fichier de configuration <code class="docutils literal notranslate"><span class="pre">yaml</span></code> pour CircleCI déclenche le workflow complet sur chaque demande push ou pull sur la branche principale (<code class="docutils literal notranslate"><span class="pre">master</span></code>). Les requêtes push et pull sur les autres branches déclenchent uniquement le workflow de construction et de test.</p>
 <p>Une fois le projet prêt. Il faut ajouter les variables d’environnement suivantes dans les paramètres du projet CircleCI (voir la partie <a class="reference external" href="https://circleci.com/docs/set-environment-variable/#set-an-environment-variable-in-a-project">Définir les variables d’environnement</a> de la documentation CircleCI pour les détails) :</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># SECURITY WARNING: don&#39;t run with the debug turned on in production!</span>
 <span class="n">DEBUG</span>

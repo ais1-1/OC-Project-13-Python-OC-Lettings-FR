@@ -52,6 +52,8 @@ Pour voir le rapport de couverture sur le terminal :
 
     # Déplacer à la racine du dossier
     cd path/to/the/folder/OC-Project-13-Python-OC-Lettings-FR
+    # Activer l'environnement virtuel
+    source venv/bin/activate
     coverage report -m
 
 Pour voir le rapport avec un rapport de test :
@@ -213,6 +215,8 @@ Il y a trois façons pour lancer le site avec une image Docker.
         .. code-block:: bash
 
             ./run_latest_docker_image_locally.sh
+
+        3. Accédez le site dans un navigateur à http://0.0.0.0:8000/.
         
         .. note:: 
             * Si vous êtes sur Windows, il faut lancer ceci dans `le shell Bash pour Windows <https://learn.microsoft.com/fr-fr/windows/wsl/install>`_.
@@ -228,7 +232,7 @@ Le compte CircleCI est connecté au dépôt GitHub. Pour créer un projet de la 
 
 Au lieu de l'étape de création automatique du fichier de configuration, vous pouvez utiliser celui qui se trouve à la racine du dépôt (voir `étape 4 <https://circleci.com/docs/getting-started/#>`_ dans la documentation).
 
-Comme indiquer dans la partie :ref:`circleci-description` Le point crucial pour connecter CircleCI à notre projet est un ``config.yml``, qui se trouve dans un répertoire ``.circleci``. Ce fichier de configuration ``yaml`` pour CircleCI déclenche le workflow complet sur chaque demande push ou pull sur la branche principale (``master``). Les requêtes push et pull sur les autres branches déclenchent uniquement le workflow de construction et de test.
+Comme indiquer dans la partie :ref:`circleci-description`, le point crucial pour connecter CircleCI à notre projet est un ``config.yml``, qui se trouve dans un répertoire ``.circleci``. Ce fichier de configuration ``yaml`` pour CircleCI déclenche le workflow complet sur chaque demande push ou pull sur la branche principale (``master``). Les requêtes push et pull sur les autres branches déclenchent uniquement le workflow de construction et de test.
 
 Une fois le projet prêt. Il faut ajouter les variables d'environnement suivantes dans les paramètres du projet CircleCI (voir la partie `Définir les variables d'environnement <https://circleci.com/docs/set-environment-variable/#set-an-environment-variable-in-a-project>`_ de la documentation CircleCI pour les détails) :
 

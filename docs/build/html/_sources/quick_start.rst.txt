@@ -69,7 +69,7 @@ Il y a deux options pour la création du fichier `.env` :
 
         python create_env_file.py
 
-**Une fois le fichier `.env` créé, ouvrez-le avec un éditeur de texte et ajoutez les bonnes valeurs pour chaque variable.**
+**Une fois le fichier .env créé, ouvrez-le avec un éditeur de texte et ajoutez les bonnes valeurs pour chaque variable.**
 
 .. _run-website-runserver:
 

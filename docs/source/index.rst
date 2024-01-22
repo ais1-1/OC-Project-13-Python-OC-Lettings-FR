@@ -21,11 +21,3 @@ Bienvenue dans la documentation d'Orange County Lettings site web 2.0 !
    Procédures de déploiement <deployment_procedure>
    Gestion de l'application <application_management>
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
