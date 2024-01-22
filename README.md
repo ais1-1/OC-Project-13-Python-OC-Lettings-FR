@@ -1,10 +1,11 @@
-## Site web d'Orange County Lettings V2.0
+# Site web d'Orange County Lettings V2.0
 
 ## Table des matières
 
 1. [Description du projet](#description-du-projet)
 2. [Développement local](#développement-local)
 3. [Déploiement](#déploiement)
+4. [Documentation sur Read the Docs](#documentation-read-the-docs)
 
 ## Description du projet
 
@@ -124,7 +125,7 @@ Si vous êtes sur Windows, il faut lancer ceci dans [le shell Bash pour Windows]
 
 ### Prérequis
 
-Afin d'effectuer le déploiement et l'intégration continue de l'application, les comptes suivants sont nécessaires :
+Afin d'effectuer le déploiement et l'intégration continue de l'application, les comptes suivants sont nécessaires :
 
 - compte [GitHub](https://github.com/)
 - compte [CircleCI](https://circleci.com) (connecté au compte GitHub)
@@ -159,6 +160,10 @@ Le point crucial pour connecter CircleCI à notre projet est un `config.yml`, qu
 | DOCKER_REPO       | Nom du repository sur DockerHub                                                                                                                                                                                           |
 | HEROKU_APP_NAME   | Nom de l'application Heroku : l'application déployée sera accessible via `https://<HEROKU_APP_NAME>.<IDENTIFIER>.herokuapp.com/`                                                                                                       |
 | HEROKU_API_KEY      | Token Heroku, disponible dans les paramètres du compte (*Heroku API Key*)                                                                                                                                                 |
+| DEBUG      | Un booléen qui active/désactive le mode débogage pour Django 
+| ALLOWED_HOSTS      | Une liste de chaînes représentant les noms d'hôte/domaine que ce site Django peut servir
+| PORT      | Port à exposer pour exécuter des images Docker localement
+
 
 #### Docker
 
