@@ -198,6 +198,8 @@ Il y a trois façons pour lancer le site avec une image Docker.
                 
         4. Accédez le site dans un navigateur à http://0.0.0.0:8000/.
 
+.. _run-bash-script:
+
     * Utiliser le script Bash ``run_latest_docker_image_locally.sh`` comme ceci :
 
         1. Donner la permission au script de s'exécuter :
@@ -212,8 +214,12 @@ Il y a trois façons pour lancer le site avec une image Docker.
 
             ./run_latest_docker_image_locally.sh
         
-        .. note:: Si vous êtes sur Windows, il faut lancer ceci dans `le shell Bash pour Windows <https://learn.microsoft.com/fr-fr/windows/wsl/install>`_.
+        .. note:: 
+            * Si vous êtes sur Windows, il faut lancer ceci dans `le shell Bash pour Windows <https://learn.microsoft.com/fr-fr/windows/wsl/install>`_.
+            * La condition préalable au travail de script est la configuration du fichier ``.env`` du dépôt. Il peut également recevoir le nom de l'image Docker comme argument. S'il n'est pas fourni, il utilisera la variable d'environnement ``DOCKER_REPO`` de votre fichier ``.env``.
+            
 
+.. note:: Pour faire tous ces étapes dans une seule commande vous pouvez utilisez le script ``build_push_run_docker_image.sh``. Veuillez vous référer à :ref:`Utiliser le script Bash <run-bash-script>` pour savoir comment exécuter le script. Ce script va créer et étiqueter l'image Docker, transférer-la vers le registre DockerHub et exécuter-la localement. Notez aussi qu'il y a deux balises, l'une contenant le hachage court du dernier commit et l'autre avec une chaîne 'latest'. La condition préalable au travail de script est la configuration du fichier ``.env`` du dépôt. Il peut également recevoir le nom de l'image Docker comme argument. S'il n'est pas fourni, il utilisera la variable d'environnement ``DOCKER_REPO`` de votre fichier ``.env``.
 
 Utilisation de CircleCI
 -----------------------

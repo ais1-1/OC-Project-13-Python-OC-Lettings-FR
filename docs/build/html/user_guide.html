@@ -279,6 +279,10 @@ Vous<span class="w"> </span>pouvez<span class="w"> </span>taper<span class="w"> 
 </ol>
 </div></blockquote>
 </li>
+</ul>
+</div></blockquote>
+<blockquote id="run-bash-script">
+<div><ul>
 <li><p>Utiliser le script Bash <code class="docutils literal notranslate"><span class="pre">run_latest_docker_image_locally.sh</span></code> comme ceci :</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -295,12 +299,19 @@ Vous<span class="w"> </span>pouvez<span class="w"> </span>taper<span class="w"> 
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Si vous êtes sur Windows, il faut lancer ceci dans <a class="reference external" href="https://learn.microsoft.com/fr-fr/windows/wsl/install">le shell Bash pour Windows</a>.</p>
+<ul class="simple">
+<li><p>Si vous êtes sur Windows, il faut lancer ceci dans <a class="reference external" href="https://learn.microsoft.com/fr-fr/windows/wsl/install">le shell Bash pour Windows</a>.</p></li>
+<li><p>La condition préalable au travail de script est la configuration du fichier <code class="docutils literal notranslate"><span class="pre">.env</span></code> du dépôt. Il peut également recevoir le nom de l’image Docker comme argument. S’il n’est pas fourni, il utilisera la variable d’environnement <code class="docutils literal notranslate"><span class="pre">DOCKER_REPO</span></code> de votre fichier <code class="docutils literal notranslate"><span class="pre">.env</span></code>.</p></li>
+</ul>
 </div>
 </div></blockquote>
 </li>
 </ul>
 </div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Pour faire tous ces étapes dans une seule commande vous pouvez utilisez le script <code class="docutils literal notranslate"><span class="pre">build_push_run_docker_image.sh</span></code>. Veuillez vous référer à <a class="reference internal" href="#run-bash-script"><span class="std std-ref">Utiliser le script Bash</span></a> pour savoir comment exécuter le script. Ce script va créer et étiqueter l’image Docker, transférer-la vers le registre DockerHub et exécuter-la localement. Notez aussi qu’il y a deux balises, l’une contenant le hachage court du dernier commit et l’autre avec une chaîne “latest”. La condition préalable au travail de script est la configuration du fichier <code class="docutils literal notranslate"><span class="pre">.env</span></code> du dépôt. Il peut également recevoir le nom de l’image Docker comme argument. S’il n’est pas fourni, il utilisera la variable d’environnement <code class="docutils literal notranslate"><span class="pre">DOCKER_REPO</span></code> de votre fichier <code class="docutils literal notranslate"><span class="pre">.env</span></code>.</p>
+</div>
 </section>
 </section>
 <section id="utilisation-de-circleci">
