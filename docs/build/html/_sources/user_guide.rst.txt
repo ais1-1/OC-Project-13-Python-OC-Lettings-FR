@@ -247,6 +247,9 @@ Une fois le projet prêt. Il faut ajouter les variables d'environnement suivante
     # Allowed hosts
     ALLOWED_HOSTS
 
+    # Port to expose to run images locally
+    PORT
+
     # Sentry api key
     SENTRY_DSN
 
